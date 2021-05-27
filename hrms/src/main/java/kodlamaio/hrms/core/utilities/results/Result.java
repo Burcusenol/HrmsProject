@@ -3,7 +3,7 @@ package kodlamaio.hrms.core.utilities.results;
 public class Result {
 	private boolean success;
 	private String message;
-
+	
 
 	public Result(boolean success)
 	{

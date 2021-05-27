@@ -2,8 +2,6 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,30 +9,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.JobTitleService;
+import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.JobTitle;
+import kodlamaio.hrms.entities.concretes.Candidate;
 
 @RestController
-@RequestMapping("/api/titles")
-public class JobTitlesController {
-	
-	private JobTitleService jobTitleService;
+@RequestMapping("/api/candidates")
+public class CandidatesController {
+
+	private CandidateService candidateService;
 
 	@Autowired
-	public JobTitlesController(JobTitleService jobTitleService) {
+	public CandidatesController(CandidateService candidateService) {
 		super();
-		this.jobTitleService = jobTitleService;
+		this.candidateService = candidateService;
 	}
-
+	
 	@GetMapping("/getall")
-	public DataResult<List<JobTitle>> getAll(){
-		return jobTitleService.getAll();
+	public DataResult<List<Candidate>> getAll(){
+		return candidateService.getAll();
 	}
 	
 	@PostMapping("/add")
-	public Result insert( @Valid @RequestBody JobTitle jobTitle) {
-		return jobTitleService.insert(jobTitle);
+	public Result insert(@RequestBody Candidate candidate) {
+		return candidateService.insert(candidate);
 	}
+	
 }
