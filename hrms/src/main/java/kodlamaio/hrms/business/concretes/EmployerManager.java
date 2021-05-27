@@ -45,7 +45,7 @@ public class EmployerManager implements EmployerService {
 	public Result insert(Employer employer) {
 
 		Result result=BusinessRules.run(checkIfEmailExist(employer.getEmail()),checkIfEmployerByEmployee(employer),
-				checkIfNull(employer),checkIfEmail(employer));
+				checkIfNull(employer),checkIfEmail(employer),isEmailDomainCheck(employer));
 			
 		if(result.isSuccess()) {
 				this.employerDao.save(employer);
@@ -92,7 +92,7 @@ public class EmployerManager implements EmployerService {
 	     Matcher matcher = pattern.matcher(employer.getEmail());
 		
 		if(!employer.getEmail().contains(employer.getWebAddress())) {
-			return new ErrorResult("Web address is match");
+			return new ErrorResult("Web address is not match");
 		}
 		else if(matcher.matches()) {
 			return new ErrorResult("");
