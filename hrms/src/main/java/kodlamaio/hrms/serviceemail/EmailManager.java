@@ -1,4 +1,4 @@
-package kodlamaio.hrms.email;
+package kodlamaio.hrms.serviceemail;
 
 public class EmailManager {
 
