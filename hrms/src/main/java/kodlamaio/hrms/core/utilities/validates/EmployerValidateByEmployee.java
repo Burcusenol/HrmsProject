@@ -1,4 +1,4 @@
-package kodlamaio.hrms.core.utilities.utils;
+package kodlamaio.hrms.core.utilities.validates;
 
 import kodlamaio.hrms.entities.concretes.Employer;
 

@@ -5,16 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import kodlamaio.hrms.business.abstracts.CandidateService;
+import kodlamaio.hrms.core.utilities.adapters.abstracts.EmailService;
 import kodlamaio.hrms.core.utilities.adapters.abstracts.MernisService;
+import kodlamaio.hrms.core.utilities.business.BusinessRules;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.core.utilities.utils.EmailValidate;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.dataAccess.abstracts.UserDao;
+import kodlamaio.hrms.entities.abstracts.User;
 import kodlamaio.hrms.entities.concretes.Candidate;
 
 
@@ -25,13 +28,15 @@ public class CandidateManager implements CandidateService {
 	private CandidateDao candidateDao;
 	private UserDao userDao;
 	private MernisService mernisService;
+	private EmailService emailService;
 	
 	@Autowired
-	public CandidateManager(CandidateDao candidateDao,MernisService mernisService,UserDao userDao) {
+	public CandidateManager(CandidateDao candidateDao,MernisService mernisService,UserDao userDao,EmailService emailService) {
 		super();
 		this.candidateDao = candidateDao;
 		this.mernisService=mernisService;
 		this.userDao=userDao;
+		this.emailService=emailService;
 	}
 
 	@Override
@@ -44,60 +49,66 @@ public class CandidateManager implements CandidateService {
 	@Override
 	public Result insert(Candidate candidate) {
 
-		if (checkIfNull(candidate)) {
-			return new ErrorResult("These fields cannot be blank ");	
-		} else if(checkIdentityNumber(candidate)) {
-			return new ErrorResult("Identity number does not greater than 11");	
-		}else if(checkIfIdentityExist(candidate.getIdentityNumber())) {
-			return new ErrorResult("Identity number already exists.");
-		}else if(checkIfEmailExist(candidate.getEmail())) {
-			return new ErrorResult("Email already exist");
-		}else if(!mernisService.userValidate(candidate)) {
-			return new ErrorResult();
-		}else if(!EmailValidate.emailValidate(candidate.getEmail())) {
-			return new ErrorResult("Email is not match");
-		}else {
-			
+		Result result=BusinessRules.run(checkIdentityNumber(candidate),checkIfIdentityExist(candidate.getIdentityNumber()),
+				checkIfEmail(candidate),checkIfEmailExist(candidate.getEmail()),checkIfMernis(candidate),checkIfNull(candidate));
+	
+		if(result.isSuccess()) {
 			this.candidateDao.save(candidate);
 			return new SuccessResult("Candidates added");
 		}
+			return result;
+		}
 
 
-	}
 
-	private boolean checkIfIdentityExist(String identityNumber)
+
+	private Result checkIfIdentityExist(String identityNumber)
 	{
 		if(candidateDao.findByIdentityNumber(identityNumber).isPresent()){
-			return false;		
+			return new ErrorResult("Identity number already exists.");		
 		}
-		return true;
+		return new SuccessResult();
 	}
 	
 	
-	private boolean checkIfEmailExist(String email) {
+	private Result checkIfEmailExist(String email) {
 		if(userDao.findByEmail(email).isPresent()) {
-			return false;
+			return new ErrorResult("Email already exist");
 		}
-		return true;
+		return new SuccessResult();
 	}
 	
-	private boolean checkIdentityNumber(Candidate candidate)
+	private Result checkIdentityNumber(Candidate candidate)
 	{
 		if(candidate.getIdentityNumber().length()!=11) {
-			return false;		
+			return new ErrorResult("Identity number does not greater than 11");		
 		}
-		return true;
+		return new SuccessResult();
 	}
 	
-	private boolean checkIfNull(Candidate candidate) {
+	private Result checkIfNull(Candidate candidate) {
 		if(!candidate.getFirstName().isEmpty()&&!candidate.getLastName().isEmpty()
 				&&!candidate.getIdentityNumber().isEmpty()
 				&&!candidate.getBirthDate().toString().isEmpty()&&!candidate.getEmail().isEmpty()
 				&&!candidate.getPassword().isEmpty()) {
-			return false;
+			return new SuccessResult();
 		}
-		return true;
-		
+		return new ErrorResult("These fields cannot be blank ");
 	}
+	
+	private Result checkIfMernis(Candidate candidate) {
+		if(mernisService.userValidate(candidate)==false) {
+			return new ErrorResult("Mernis is failed");
+		}
+		return new SuccessResult();
+	}
+	
+	private Result checkIfEmail(User user) {
+		if(emailService.emailSend(user)) {
+			return new SuccessResult("Email send");
+		}
+		return new ErrorResult();
+	}
+	
 	
 }

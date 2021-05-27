@@ -10,8 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+
 
 import org.springframework.data.annotation.CreatedDate;
 
@@ -32,12 +31,11 @@ public abstract class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotBlank(message="password is not empty")
+
 	@Column(name = "password")
 	private String password;
 	
-	@Email(message = "Email is not match")
-	@NotBlank(message = "Email is not empty")
+
 	@Column(name = "email")
 	private String email;
 	

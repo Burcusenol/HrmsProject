@@ -1,4 +1,4 @@
-package kodlamaio.hrms.core.utilities.utils;
+package kodlamaio.hrms.core.utilities.validates;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
