@@ -2,10 +2,9 @@ package kodlamaio.hrms.dataAccess.abstracts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.concretes.City;
 
-public interface EmployerDao extends JpaRepository<Employer, Integer>{
+public interface CityDao extends JpaRepository<City, Integer>{
 
 	boolean existsById(int id);
-	
 }
