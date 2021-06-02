@@ -1,12 +1,17 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.Date;
+
+
+import java.time.LocalDate;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import kodlamaio.hrms.entities.abstracts.User;
 import lombok.AllArgsConstructor;
@@ -26,18 +31,23 @@ import lombok.NoArgsConstructor;
 
 public class Candidate extends User{
 
+	@NotBlank(message = "First name field cannot be empty!")
 	@Column(name = "first_name")
 	private String firstName;
 	
 
+	@NotBlank(message = "Last name field cannot be empty!")
 	@Column(name = "last_name")
 	private String lastName;
 	
 
+	@NotBlank(message = "Identity number field cannot be empty!")
+	@Size(min =11,max = 11,message = "Identity number must be equal to 11!")
 	@Column(name = "identity_number")
 	private String identityNumber;
 
+	@NotNull(message = "Birth date field cannot be empty!")
 	@Column(name="birth_date")
-	private Date birthDate; 
+	private LocalDate birthDate; 
 	
 }

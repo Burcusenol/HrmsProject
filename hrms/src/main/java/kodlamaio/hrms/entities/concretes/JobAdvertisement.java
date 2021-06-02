@@ -1,6 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.Date;
+
+import java.time.LocalDateTime;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.CreatedDate;
+
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,11 +49,11 @@ public class JobAdvertisement {
 	private int quata;
 	
 	@Column(name = "application_deadline")
-	private Date applicationDeadline;
+	private LocalDateTime applicationDeadline;
 	
+
 	@Column(name = "created_date")
-	@CreatedDate
-	private Date createdDate;
+	private LocalDateTime createdDate=LocalDateTime.now();
 	
 	@Column(name = "is_active")
 	private boolean isActive;

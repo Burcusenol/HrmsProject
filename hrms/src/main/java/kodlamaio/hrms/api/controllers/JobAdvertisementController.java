@@ -14,6 +14,7 @@ import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementDetailsDto;
 
 @RestController
 @RequestMapping("/api/jobAdvertisements")
@@ -40,6 +41,11 @@ public class JobAdvertisementController {
 	@GetMapping("/getAllSorted")
 	public DataResult<List<JobAdvertisement>> getAllSorted() {
 		return jobAdvertisementService.getAllSorted();
+	}
+	
+	@GetMapping("/getJobAdvertisementWithEmployerDetails")
+	public DataResult<List<JobAdvertisementDetailsDto>> getAdvertisementWithEmployerDetails() {
+		return jobAdvertisementService.getAdvertisementWithEmployerDetails();
 	}
 	
 	@GetMapping("/getAllByIsActiveTrue")

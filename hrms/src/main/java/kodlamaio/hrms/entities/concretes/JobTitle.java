@@ -1,6 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,9 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 
-import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -35,12 +35,13 @@ public class JobTitle {
 	@Column(name="id")
 	private int id;
 	
+	@NotBlank(message = "Job title cannot be empty!")
 	@Column(name="title")
 	private String title;
 	
-	@CreatedDate
+	
 	@Column(name = "created_date")
-	private Date createdDate;
+	private LocalDateTime createdDate;
 	
 	@Column(name = "is_active")
 	private boolean isActive;

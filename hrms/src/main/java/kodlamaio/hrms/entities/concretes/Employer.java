@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -32,13 +33,17 @@ import lombok.NoArgsConstructor;
 public class Employer extends User{
 
 
+	@NotBlank(message = "Company name field cannot be empty!")
 	@Column(name = "company_name")
 	private String companyName;
 	
 
+	@NotBlank(message = "Web address field cannot be empty!")
 	@Column(name = "web_address")
 	private String webAddress;
 
+	
+	@NotBlank(message = "Phone number field cannot be empty!")
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	

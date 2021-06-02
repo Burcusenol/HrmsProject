@@ -17,6 +17,7 @@ import kodlamaio.hrms.dataAccess.abstracts.CityDao;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementDetailsDto;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService{
@@ -63,6 +64,11 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 
 	@Override
+	public DataResult<List<JobAdvertisementDetailsDto>> getAdvertisementWithEmployerDetails() {
+		return new SuccessDataResult<List<JobAdvertisementDetailsDto>>(this.jobAdvertisementDao.getAdvertisementWithEmployerDetails());
+	}
+	
+	@Override
 	public Result insert(JobAdvertisement jobAdvertisement) {
 
 	Result result=BusinessRules.run(checkIfNull(jobAdvertisement),minMaxControl(jobAdvertisement),
@@ -89,6 +95,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		jobAdvertisementDao.save(jobAdvertisement);
 		return new SuccessResult("Job advertisement passive");
 	}
+	
 	
 	
 	private Result checkIfNull(JobAdvertisement jobAdvertisement) {
@@ -121,6 +128,9 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		}
 		return new SuccessResult();
 	}
+
+	
+	
 	
 	
 }
