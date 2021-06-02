@@ -71,7 +71,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	@Override
 	public Result insert(JobAdvertisement jobAdvertisement) {
 
-	Result result=BusinessRules.run(checkIfNull(jobAdvertisement),minMaxControl(jobAdvertisement),
+	Result result=BusinessRules.run(minMaxControl(jobAdvertisement),
 			checfIfEmployerExist(jobAdvertisement.getEmployer().getId()),checkIfCityExist(jobAdvertisement.getCity().getId()));
 		
 		if(result.isSuccess()) {
@@ -97,16 +97,6 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 	
 	
-	
-	private Result checkIfNull(JobAdvertisement jobAdvertisement) {
-		if(!jobAdvertisement.getDescription().isEmpty()&&!jobAdvertisement.getApplicationDeadline().toString().isEmpty())
-		{		
-			return new SuccessResult();
-			
-		}
-		return new ErrorResult("Description and application deadline cannot be blank ");
-		
-	}
 	
 	private Result minMaxControl(JobAdvertisement jobAdvertisement) {
 		if(jobAdvertisement.getMinSalary()>jobAdvertisement.getMaxSalary()) {

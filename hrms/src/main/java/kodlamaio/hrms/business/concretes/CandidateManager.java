@@ -49,8 +49,8 @@ public class CandidateManager implements CandidateService {
 	@Override
 	public Result insert(Candidate candidate) {
 
-		Result result=BusinessRules.run(checkIdentityNumber(candidate),checkIfIdentityExist(candidate.getIdentityNumber()),
-				checkIfEmail(candidate),checkIfEmailExist(candidate.getEmail()),checkIfMernis(candidate),checkIfNull(candidate));
+		Result result=BusinessRules.run(checkIfIdentityExist(candidate.getIdentityNumber()),
+				checkIfEmail(candidate),checkIfEmailExist(candidate.getEmail()),checkIfMernis(candidate));
 	
 		if(result.isSuccess()) {
 			this.candidateDao.save(candidate);
@@ -58,8 +58,6 @@ public class CandidateManager implements CandidateService {
 		}
 			return result;
 		}
-
-
 
 
 	private Result checkIfIdentityExist(String identityNumber)
@@ -76,24 +74,6 @@ public class CandidateManager implements CandidateService {
 			return new ErrorResult("Email already exist");
 		}
 		return new SuccessResult();
-	}
-	
-	private Result checkIdentityNumber(Candidate candidate)
-	{
-		if(candidate.getIdentityNumber().length()!=11) {
-			return new ErrorResult("Identity number does not greater than 11");		
-		}
-		return new SuccessResult();
-	}
-	
-	private Result checkIfNull(Candidate candidate) {
-		if(!candidate.getFirstName().isEmpty()&&!candidate.getLastName().isEmpty()
-				&&!candidate.getIdentityNumber().isEmpty()
-				&&!candidate.getBirthDate().toString().isEmpty()&&!candidate.getEmail().isEmpty()
-				&&!candidate.getPassword().isEmpty()) {
-			return new SuccessResult();
-		}
-		return new ErrorResult("These fields cannot be blank ");
 	}
 	
 	private Result checkIfMernis(Candidate candidate) {

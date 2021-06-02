@@ -3,15 +3,19 @@ package kodlamaio.hrms.entities.concretes;
 
 
 import java.time.LocalDate;
-
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import kodlamaio.hrms.entities.abstracts.User;
 import lombok.AllArgsConstructor;
@@ -27,8 +31,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @PrimaryKeyJoinColumn(name = "id")
 @Table(name = "candidates")
-
-
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","resumes"})
 public class Candidate extends User{
 
 	@NotBlank(message = "First name field cannot be empty!")
@@ -49,5 +52,9 @@ public class Candidate extends User{
 	@NotNull(message = "Birth date field cannot be empty!")
 	@Column(name="birth_date")
 	private LocalDate birthDate; 
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<Resume> resumes;
 	
 }

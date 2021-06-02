@@ -12,29 +12,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.JobTitleService;
+import kodlamaio.hrms.business.abstracts.LanguageService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.entities.concretes.JobTitle;
+import kodlamaio.hrms.entities.concretes.Language;
 
 @RestController
-@RequestMapping("/api/titles")
-public class JobTitlesController {
-	
-	private JobTitleService jobTitleService;
+@RequestMapping("/api/languages")
+public class LanguageController {
+
+	private LanguageService languageService;
 
 	@Autowired
-	public JobTitlesController(JobTitleService jobTitleService) {
+	public LanguageController(LanguageService languageService) {
 		super();
-		this.jobTitleService = jobTitleService;
-	}
-
-	@GetMapping("/getall")
-	public DataResult<List<JobTitle>> getAll(){
-		return jobTitleService.getAll();
+		this.languageService = languageService;
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> insert(@Valid @RequestBody JobTitle jobTitle) {
-		return ResponseEntity.ok(jobTitleService.insert(jobTitle));
+	public ResponseEntity<?> Insert( @Valid @RequestBody Language language){
+		return ResponseEntity.ok(languageService.insert(language));
+	}
+	
+	@GetMapping("/getall")
+	public DataResult<List<Language>> getAll(){
+		return languageService.getAll();
 	}
 }

@@ -12,9 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-
-
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,12 +40,14 @@ public class JobAdvertisement {
 	//@Column(name = "city_id")
 	//private int city_id;
 	
+	@NotBlank(message = "Description cannot be blank")
 	@Column(name ="description",length = 500 )
 	private String description;
 	
 	@Column(name = "quata")
 	private int quata;
 	
+
 	@Column(name = "application_deadline")
 	private LocalDateTime applicationDeadline;
 	
@@ -57,6 +57,7 @@ public class JobAdvertisement {
 	
 	@Column(name = "is_active")
 	private boolean isActive;
+	
 	
 	@Column(name = "min_salary")
 	private double minSalary;
