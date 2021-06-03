@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.sun.istack.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,8 +42,9 @@ public class School {
 	@Column(name = "graduation_date")
 	private LocalDate graduationDate;
 	
-	@NotBlank(message = "Start year cannot be empty!")
+	//@NotBlank(message = "Start year cannot be empty!")
 	@Column(name = "started_date")
+	@NotNull()
 	private LocalDate startedDate;
 	
 	@Column(name = "created_date")

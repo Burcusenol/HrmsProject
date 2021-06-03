@@ -4,10 +4,10 @@ import java.util.List;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.LinkType;
+import kodlamaio.hrms.entities.concretes.SocialMedia;
 
-public interface LinkTypeService {
+public interface SocialMediaService {
 
-	Result insert(LinkType linkType);
-	DataResult<List<LinkType>> getAll();
+	Result insert(SocialMedia link);
+	DataResult<List<SocialMedia>> getAll();
 }

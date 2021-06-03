@@ -5,36 +5,36 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kodlamaio.hrms.business.abstracts.LinkService;
+import kodlamaio.hrms.business.abstracts.SocialMediaService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.dataAccess.abstracts.LinkDao;
-import kodlamaio.hrms.entities.concretes.Link;
+import kodlamaio.hrms.dataAccess.abstracts.SocialMediaDao;
+import kodlamaio.hrms.entities.concretes.SocialMedia;
 
 
 
 @Service
-public class LinkManager implements LinkService{
+public class SocialMediaManager implements SocialMediaService{
 
-	private LinkDao linkDao;
+	private SocialMediaDao linkDao;
 	
 	@Autowired
-	public LinkManager(LinkDao linkDao) {
+	public SocialMediaManager(SocialMediaDao linkDao) {
 		super();
 		this.linkDao = linkDao;
 	}
 
 	@Override
-	public Result insert(Link link) {
+	public Result insert(SocialMedia link) {
 		this.linkDao.save(link);
 		return new SuccessResult("Link added");
 	}
 
 	@Override
-	public DataResult<List<Link>> getAll() {
-		return new SuccessDataResult<List<Link>>(this.linkDao.findAll());
+	public DataResult<List<SocialMedia>> getAll() {
+		return new SuccessDataResult<List<SocialMedia>>(this.linkDao.findAll());
 	}
 
 }

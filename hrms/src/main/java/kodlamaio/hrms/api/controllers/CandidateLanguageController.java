@@ -36,4 +36,9 @@ public class CandidateLanguageController {
 	public ResponseEntity<?> getAll(){
 		return ResponseEntity.ok(this.candidatelanguageService.getAll());				
 	}
+	
+	@GetMapping("/getAllByCandidateId")
+	public ResponseEntity<?> getAllByCandidateId(int candidateId){
+		return ResponseEntity.ok(this.candidatelanguageService.getAllByCandidateId(candidateId));
+	}
 }

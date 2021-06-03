@@ -8,28 +8,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.LinkTypeService;
-import kodlamaio.hrms.entities.concretes.LinkType;
+import kodlamaio.hrms.business.abstracts.SocialMediaService;
+import kodlamaio.hrms.entities.concretes.SocialMedia;
 
 @RestController
-@RequestMapping("/api/linkType")
-public class LinkTypeController {
-	
-	private LinkTypeService linkTypeService;
+@RequestMapping("/api/links")
+public class SocialMediaController {
+
+	private SocialMediaService linkService;
 
 	@Autowired
-	public LinkTypeController(LinkTypeService linkTypeService) {
+	public SocialMediaController(SocialMediaService linkService) {
 		super();
-		this.linkTypeService = linkTypeService;
+		this.linkService = linkService;
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> Insert(@RequestBody LinkType linkType){
-		return ResponseEntity.ok(this.linkTypeService.insert(linkType));
+	public ResponseEntity<?> insert(@RequestBody SocialMedia link){
+		return ResponseEntity.ok(this.linkService.insert(link));
 	}
 	
 	@GetMapping("/getall")
 	public ResponseEntity<?> getAll(){
-		return ResponseEntity.ok(this.linkTypeService.getAll());
+		return ResponseEntity.ok(this.linkService.getAll());
 	}
 }

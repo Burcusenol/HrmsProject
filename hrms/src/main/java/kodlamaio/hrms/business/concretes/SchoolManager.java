@@ -35,4 +35,9 @@ public class SchoolManager implements SchoolService {
 		return new SuccessDataResult<List<School>>(this.schoolDao.findAll());
 	}
 
+	@Override
+	public DataResult<List<School>> getByCandidateIdOrderByGraduationDateDesc(int candidateId) {
+		return new SuccessDataResult<List<School>>(this.schoolDao.getByCandidateIdOrderByGraduationDateDesc(candidateId));
+	}
+
 }

@@ -37,4 +37,9 @@ public class CandidateLanguageManager implements CandidateLanguageService {
 		return new SuccessDataResult<List<CandidateLanguage>>(candidatelanguageDao.findAll(),"Language listed");
 	}
 
+	@Override
+	public DataResult<List<CandidateLanguage>> getAllByCandidateId(int candidateId) {
+		return new SuccessDataResult<List<CandidateLanguage>>(candidatelanguageDao.getAllByCandidateId(candidateId),"Language listed");
+	}
+
 }

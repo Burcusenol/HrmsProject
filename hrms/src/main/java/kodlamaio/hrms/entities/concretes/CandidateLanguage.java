@@ -10,9 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,15 +30,14 @@ public class CandidateLanguage {
 	@Column(name = "language_level")
 	@Min(1)
 	@Max(5)
-	@NotBlank(message = "Level field cannot be empty!")
+	//@NotBlank(message = "Level field cannot be empty!")
 	private int level;
 
-	 @ManyToOne()
-	 @JoinColumn(name = "language_id")
-	 private Language language;
+	@ManyToOne()
+	@JoinColumn(name = "language_id")
+	private Language language;
 	
 	@ManyToOne()
-	@JsonIgnore()
 	@JoinColumn(name = "candidate_id")
 	private Candidate candidate;
 }

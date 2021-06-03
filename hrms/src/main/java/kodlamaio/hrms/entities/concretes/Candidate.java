@@ -72,7 +72,7 @@ public class Candidate extends User{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")
-	private List<Link> links;
+	private List<SocialMedia> links;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")

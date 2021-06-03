@@ -11,4 +11,5 @@ public interface CandidateLanguageService {
 
 	Result insert(CandidateLanguage candidateLanguage);
 	DataResult<List<CandidateLanguage>> getAll();
+	DataResult<List<CandidateLanguage>> getAllByCandidateId(int candidateId);
 }
