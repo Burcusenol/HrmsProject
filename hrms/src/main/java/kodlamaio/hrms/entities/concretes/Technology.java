@@ -37,6 +37,7 @@ public class Technology {
 	private LocalDateTime createdDateTime=LocalDateTime.now();
 	
 	@ManyToOne()
-	@JoinColumn(name = "resume_id", referencedColumnName =  "id" ,nullable = false)
-	private Resume resume;
+	@JoinColumn(name = "candidate_id")
+	private Candidate candidate;
+	
 }

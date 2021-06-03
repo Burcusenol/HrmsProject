@@ -41,14 +41,14 @@ public class JobExperience {
 	private LocalDate startedDate;
 	
 	@Column(name = "ended_date")
-	private LocalDateTime endedDate;
+	private LocalDate endedDate;
 	
 	@Column(name = "created_date")
 	private LocalDateTime createdDate=LocalDateTime.now();
 	
 	@ManyToOne()
-	@JoinColumn(name = "resume_id")
-	private Resume resume;
+	@JoinColumn(name = "candidate_id")
+	private Candidate candidate;
 	
 
 

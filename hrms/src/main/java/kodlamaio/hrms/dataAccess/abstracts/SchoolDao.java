@@ -8,5 +8,5 @@ import kodlamaio.hrms.entities.concretes.School;
 
 public interface SchoolDao extends JpaRepository<School, Integer>{
 	
-	List<School> getByResumeIdOrderByGraduationDateDesc(int resumeId);
+	List<School> getByCandidateIdOrderByGraduationDateDesc(int candidateId);
 }

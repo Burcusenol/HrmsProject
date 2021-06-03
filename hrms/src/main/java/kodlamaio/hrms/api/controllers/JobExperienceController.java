@@ -40,8 +40,8 @@ public class JobExperienceController {
 	}
 	
 	@GetMapping("/getByResumeIdOrderByEndedDateAsc")
-	DataResult<List<JobExperience>> getByResumeIdOrderByEndedDateAsc(@RequestParam int resumeId){
-		return jobExperienceService.getByResumeIdOrderByEndedDateAsc(resumeId);
+	DataResult<List<JobExperience>> getByCandidateOrderByEndedDateAsc(@RequestParam int candidateId){
+		return jobExperienceService.getByCandidateOrderByEndedDateAsc(candidateId);
 	}
 	
 }

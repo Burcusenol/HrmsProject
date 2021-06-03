@@ -42,8 +42,8 @@ public class JobExperienceManager implements JobExperienceService {
 
 
 	@Override
-	public DataResult<List<JobExperience>> getByResumeIdOrderByEndedDateAsc(int resumeId) {
-		return new SuccessDataResult<List<JobExperience>>(jobExperienceDao.getByResumeIdOrderByEndedDateAsc(resumeId));
+	public DataResult<List<JobExperience>> getByCandidateOrderByEndedDateAsc(int candidateId) {
+		return new SuccessDataResult<List<JobExperience>>(jobExperienceDao.getByCandidateIdOrderByEndedDateAsc(candidateId));
 	}
 
 
