@@ -4,10 +4,10 @@ import java.util.List;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Technology;
+import kodlamaio.hrms.entities.concretes.Language;
 
-public interface TechnologyService {
+public interface LanguageService {
 
-	Result insert(Technology technology);
-	DataResult<List<Technology>> getAll();
+	Result insert(Language language);
+	DataResult<List<Language>> getall();
 }

@@ -27,7 +27,7 @@ public class TechnologyManager implements TechnologyService {
 	}
 
 	@Override
-	public Result add(Technology technology) {
+	public Result insert(Technology technology) {
 		this.technologyDao.save(technology);
 		return new SuccessResult("Technology added");
 	}

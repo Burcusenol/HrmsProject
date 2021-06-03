@@ -1,7 +1,5 @@
 package kodlamaio.hrms.api.controllers;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,28 +8,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.SchoolService;
-import kodlamaio.hrms.entities.concretes.School;
+import kodlamaio.hrms.business.abstracts.LanguageService;
+import kodlamaio.hrms.entities.concretes.Language;
 
 @RestController
-@RequestMapping("api/schools")
-public class SchoolController {
+@RequestMapping("/api/language")
+public class LanguageControllers {
 
-	private SchoolService schoolService;
+	private LanguageService languageService;
 
 	@Autowired
-	public SchoolController(SchoolService schoolService) {
+	public LanguageControllers(LanguageService languageService) {
 		super();
-		this.schoolService = schoolService;
+		this.languageService = languageService;
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> insert(@Valid @RequestBody School school){
-		return ResponseEntity.ok(schoolService.insert(school));
+	public ResponseEntity<?> insert(@RequestBody Language language){
+		return ResponseEntity.ok(this.languageService.insert(language));
 	}
 	
 	@GetMapping("/getall")
 	public ResponseEntity<?> getAll(){
-		return ResponseEntity.ok(this.schoolService.getAll());
+		return ResponseEntity.ok(this.languageService.getall());
 	}
+	
 }

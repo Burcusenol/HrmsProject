@@ -30,16 +30,15 @@ public class CandidateLanguage {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "level")
+	@Column(name = "language_level")
 	@Min(1)
 	@Max(5)
 	@NotBlank(message = "Level field cannot be empty!")
-	private short level;
-	
-	@ManyToOne()
-	@JsonIgnore()
-	@JoinColumn(name = "language_id")
-	private Language language;
+	private int level;
+
+	 @ManyToOne()
+	 @JoinColumn(name = "language_id")
+	 private Language language;
 	
 	@ManyToOne()
 	@JsonIgnore()

@@ -1,6 +1,5 @@
 package kodlamaio.hrms.api.controllers;
 
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.EmployerService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.entities.concretes.Employer;
 
 
@@ -31,8 +29,8 @@ public class EmployersController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<Employer>> getall(){
-		return employerService.getAll();
+	public ResponseEntity<?> getall(){
+		return ResponseEntity.ok(this.employerService.getAll());
 	}
 	
 	@PostMapping("/add")

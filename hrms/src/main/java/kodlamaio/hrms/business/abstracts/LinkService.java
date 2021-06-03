@@ -4,10 +4,10 @@ import java.util.List;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Technology;
+import kodlamaio.hrms.entities.concretes.Link;
 
-public interface TechnologyService {
+public interface LinkService {
 
-	Result insert(Technology technology);
-	DataResult<List<Technology>> getAll();
+	Result insert(Link link);
+	DataResult<List<Link>> getAll();
 }

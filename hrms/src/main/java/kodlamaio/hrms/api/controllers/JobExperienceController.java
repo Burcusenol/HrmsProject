@@ -1,10 +1,10 @@
 package kodlamaio.hrms.api.controllers;
 
-import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.entities.concretes.JobExperience;
 
 @RestController
@@ -30,18 +29,18 @@ public class JobExperienceController {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<?> Insert(@Valid @RequestBody JobExperience jobExperience) {
+	public ResponseEntity<?> Insert(@Valid @RequestBody  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) JobExperience jobExperience) {
 		return ResponseEntity.ok(jobExperienceService.insert(jobExperience));
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<JobExperience>> getAll(){
-		return jobExperienceService.getAll();
+	public ResponseEntity<?> getAll(){
+		return ResponseEntity.ok(this.jobExperienceService.getAll());
 	}
 	
 	@GetMapping("/getByResumeIdOrderByEndedDateAsc")
-	DataResult<List<JobExperience>> getByCandidateOrderByEndedDateAsc(@RequestParam int candidateId){
-		return jobExperienceService.getByCandidateOrderByEndedDateAsc(candidateId);
+	public ResponseEntity<?> getByCandidateOrderByEndedDateAsc(@RequestParam int candidateId){
+		return ResponseEntity.ok(this.jobExperienceService.getByCandidateOrderByEndedDateAsc(candidateId));
 	}
 	
 }
