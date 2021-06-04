@@ -48,6 +48,14 @@ public class JobExperienceManager implements JobExperienceService {
 
 
 
+	@Override
+	public Result addAll(List<JobExperience> jobExperience) {
+		this.jobExperienceDao.saveAll(jobExperience);
+		return new SuccessResult();
+	}
+
+
+
 
 
 

@@ -11,5 +11,6 @@ public interface SchoolService {
 
 	Result insert(School school);
 	DataResult<List<School>> getAll();
+	Result addAll(List<School> school);
 	DataResult<List<School>> getByCandidateIdOrderByGraduationDateDesc(int candidateId);
 }

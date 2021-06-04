@@ -45,6 +45,11 @@ public class CandidateManager implements CandidateService {
 		(candidateDao.findAll(),"Candidates listed.");
 
 	}
+	
+	@Override
+	public DataResult<Candidate> getById(int id) {
+		return new SuccessDataResult<Candidate>(this.candidateDao.findById(id).get());
+	}
 
 	@Override
 	public Result insert(Candidate candidate) {
@@ -89,6 +94,8 @@ public class CandidateManager implements CandidateService {
 		}
 		return new ErrorResult();
 	}
+
+	
 	
 	
 }

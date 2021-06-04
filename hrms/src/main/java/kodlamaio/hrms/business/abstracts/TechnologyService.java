@@ -10,4 +10,7 @@ public interface TechnologyService {
 
 	Result insert(Technology technology);
 	DataResult<List<Technology>> getAll();
+	Result addAll(List<Technology> technology);
+    DataResult<List<Technology>> getAllByCandidateId(int candidateId);
+
 }

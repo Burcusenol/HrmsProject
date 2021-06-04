@@ -37,4 +37,15 @@ public class TechnologyManager implements TechnologyService {
 		return new SuccessDataResult<List<Technology>>(technologyDao.findAll(),"Technology listed");
 	}
 
+	@Override
+	public Result addAll(List<Technology> technology) {
+		this.technologyDao.saveAll(technology);
+		return new SuccessResult();
+	}
+
+	@Override
+	public DataResult<List<Technology>> getAllByCandidateId(int candidateId) {
+		return new SuccessDataResult<List<Technology>>(technologyDao.getAllByCandidateId(candidateId),"Technology listed");
+	}
+
 }

@@ -10,5 +10,5 @@ public interface CandidateService {
 
 	DataResult<List<Candidate>> getAll();
 	Result insert(Candidate candidate);
-	
+	DataResult<Candidate> getById(int id);
 }

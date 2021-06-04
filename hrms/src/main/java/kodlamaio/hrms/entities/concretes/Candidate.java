@@ -60,7 +60,7 @@ public class Candidate extends User{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")
-	private List<Image> images;
+	private List<CandidateImage> images;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")

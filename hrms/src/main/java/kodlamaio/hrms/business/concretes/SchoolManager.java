@@ -2,6 +2,7 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,12 @@ public class SchoolManager implements SchoolService {
 	@Override
 	public DataResult<List<School>> getByCandidateIdOrderByGraduationDateDesc(int candidateId) {
 		return new SuccessDataResult<List<School>>(this.schoolDao.getByCandidateIdOrderByGraduationDateDesc(candidateId));
+	}
+
+	@Override
+	public Result addAll(List<School> school) {
+		this.schoolDao.saveAll(school);
+		return new SuccessResult();
 	}
 
 }

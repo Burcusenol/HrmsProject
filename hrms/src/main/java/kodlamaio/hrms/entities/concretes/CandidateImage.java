@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "images")
-public class Image {
+public class CandidateImage {
 
 	
 	@Id
@@ -37,7 +37,7 @@ public class Image {
 	private LocalDateTime createdDateTime=LocalDateTime.now();
 	
 	@Column(name = "uploaded_date")
-	private LocalDateTime uploadedDate;
+	private LocalDateTime uploadedDate=LocalDateTime.now();
 	
 	@ManyToOne()
 	@JsonIgnore()

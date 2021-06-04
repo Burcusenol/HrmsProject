@@ -37,4 +37,10 @@ public class SocialMediaManager implements SocialMediaService{
 		return new SuccessDataResult<List<SocialMedia>>(this.linkDao.findAll());
 	}
 
+	@Override
+	public Result addAll(List<SocialMedia> socialMedia) {
+		this.linkDao.saveAll(socialMedia);
+		return new SuccessResult();
+	}
+
 }
