@@ -2,7 +2,10 @@ package kodlamaio.hrms.entities.dtos;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.CandidateImage;
@@ -15,17 +18,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","candidate"})
 public class ResumeDto {
 
 	@JsonIgnore()
 	private Candidate candidate;
-	private List<School> schools;
-	private List<CandidateLanguage> candidateLanguages;
-	private List<JobExperience> jobExperiences;
-	private List<SocialMedia> socialMedias;
-	private List<Technology> technologies;
-	private List<CandidateImage> candidateImages;
+	
+	private List<@Valid School> schools;
+	private List<@Valid CandidateLanguage> candidateLanguages;
+	private List<@Valid JobExperience> jobExperiences;
+	private List<@Valid SocialMedia> socialMedias;
+	private List<@Valid Technology> technologies;
+	private List<@Valid CandidateImage> candidateImages;
 }

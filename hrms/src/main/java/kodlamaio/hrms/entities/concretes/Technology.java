@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,7 +39,7 @@ public class Technology {
 	private LocalDateTime createdDateTime=LocalDateTime.now();
 	
 	@ManyToOne()
-	@JoinColumn(name = "candidate_id")
+	@JoinColumn(name = "candidate_id",referencedColumnName =  "id")
 	private Candidate candidate;
 	
 }

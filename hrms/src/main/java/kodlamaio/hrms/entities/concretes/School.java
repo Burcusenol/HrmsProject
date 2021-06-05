@@ -39,6 +39,7 @@ public class School {
 	@NotBlank(message = "Department name cannot be empty!")
 	private String departmentName;
 	
+	
 	@Column(name = "graduation_date")
 	private LocalDate graduationDate;
 	

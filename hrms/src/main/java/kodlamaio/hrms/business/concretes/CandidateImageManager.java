@@ -60,7 +60,7 @@ public class CandidateImageManager implements CandidateImageService{
 	}
 
 	@Override
-	public DataResult<List<CandidateImage>> getByCandidateId(int candidateId) {
+	public DataResult<List<CandidateImage>> getAllByCandidateId(int candidateId) {
 		return new SuccessDataResult<List<CandidateImage>>(this.imagedao.getAllByCandidateId(candidateId));
 	}
 

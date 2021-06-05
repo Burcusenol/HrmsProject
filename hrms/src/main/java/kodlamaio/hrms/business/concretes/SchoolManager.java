@@ -14,6 +14,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.SchoolDao;
 import kodlamaio.hrms.entities.concretes.School;
 
+
 @Service
 public class SchoolManager implements SchoolService {
 
@@ -47,4 +48,12 @@ public class SchoolManager implements SchoolService {
 		return new SuccessResult();
 	}
 
+	@Override
+	public DataResult<List<School>> getAllByCandidateId(int candidateId) {
+		return new SuccessDataResult<List<School>>(schoolDao.getAllByCandidateId(candidateId));
+	}
+	
+	
+
+	
 }

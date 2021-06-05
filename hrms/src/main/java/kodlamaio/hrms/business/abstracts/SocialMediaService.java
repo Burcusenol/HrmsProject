@@ -10,5 +10,6 @@ public interface SocialMediaService {
 
 	Result insert(SocialMedia link);
 	DataResult<List<SocialMedia>> getAll();
-	 Result addAll(List<SocialMedia> socialMedia);
+	DataResult<List<SocialMedia>> getAllByCandidateId(int candidateId);
+	Result addAll(List<SocialMedia> socialMedia);
 }
