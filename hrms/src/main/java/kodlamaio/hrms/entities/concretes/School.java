@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "schools")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class School {
 
 	@Id
@@ -48,10 +51,12 @@ public class School {
 	@NotNull()
 	private LocalDate startedDate;
 	
+	@JsonIgnore()
 	@Column(name = "created_date")
 	private LocalDateTime createdDate=LocalDateTime.now();
 	
 	@ManyToOne()
+	@JsonIgnore()
 	@JoinColumn(name = "candidate_id")
 	private Candidate candidate;
 }

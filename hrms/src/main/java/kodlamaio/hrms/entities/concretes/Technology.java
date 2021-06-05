@@ -12,7 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="technologies")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Technology {
 
 	@Id
@@ -39,6 +41,7 @@ public class Technology {
 	private LocalDateTime createdDateTime=LocalDateTime.now();
 	
 	@ManyToOne()
+	@JsonIgnore()
 	@JoinColumn(name = "candidate_id",referencedColumnName =  "id")
 	private Candidate candidate;
 	

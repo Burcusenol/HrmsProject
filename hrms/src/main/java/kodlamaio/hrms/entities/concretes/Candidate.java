@@ -32,7 +32,7 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "id")
 @Table(name = "candidates")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","schools","images","jobExperiences",
-	"candidateLanguages","links","technologies"})
+	"candidateLanguages","links","technologies","coverLetters"})
 public class Candidate extends User{
 
 	@NotBlank(message = "First name field cannot be empty!")
@@ -54,7 +54,7 @@ public class Candidate extends User{
 	@Column(name="birth_date")
 	private LocalDate birthDate; 
 	
-	@JsonIgnore
+	@JsonIgnore()
 	@OneToMany(mappedBy = "candidate")
 	private List<School> schools;
 	
@@ -77,4 +77,8 @@ public class Candidate extends User{
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")
 	private List<Technology> technologies;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<CoverLetter> coverLetters;
 }

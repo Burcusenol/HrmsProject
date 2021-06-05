@@ -35,9 +35,11 @@ public class CandidateImage {
 	@Column(name = "image_url")
 	private String imageUrl;
 	
+	@JsonIgnore()
 	@Column(name = "created_date")
 	private LocalDateTime createdDateTime=LocalDateTime.now();
 	
+	@JsonIgnore()
 	@Column(name = "uploaded_date")
 	private LocalDateTime uploadedDate=LocalDateTime.now();
 	

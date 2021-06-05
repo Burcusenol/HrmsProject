@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kodlamaio.hrms.business.abstracts.CandidateImageService;
 import kodlamaio.hrms.business.abstracts.CandidateLanguageService;
 import kodlamaio.hrms.business.abstracts.CandidateService;
+import kodlamaio.hrms.business.abstracts.CoverLetterService;
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
 import kodlamaio.hrms.business.abstracts.SchoolService;
 import kodlamaio.hrms.business.abstracts.SocialMediaService;
@@ -41,12 +42,13 @@ public class CandidateManager implements CandidateService {
 	private CandidateLanguageService candidateLanguageService;
 	private SocialMediaService socialMediaService;
 	private TechnologyService technologyService;
+	private CoverLetterService coverLetterService;
 	
 	@Autowired
 	public CandidateManager(CandidateDao candidateDao, UserDao userDao, MernisService mernisService,
 			EmailService emailService, SchoolService schoolService, JobExperienceService jobExperienceService,
 			CandidateImageService imageService, CandidateLanguageService candidateLanguageService,
-			SocialMediaService socialMediaService, TechnologyService technologyService) {
+			SocialMediaService socialMediaService, TechnologyService technologyService,CoverLetterService coverLetterService) {
 		super();
 		this.candidateDao = candidateDao;
 		this.userDao = userDao;
@@ -58,6 +60,7 @@ public class CandidateManager implements CandidateService {
 		this.candidateLanguageService = candidateLanguageService;
 		this.socialMediaService = socialMediaService;
 		this.technologyService = technologyService;
+		this.coverLetterService=coverLetterService;
 	}
 
 	
@@ -71,14 +74,16 @@ public class CandidateManager implements CandidateService {
 	
 	@Override
 	public DataResult<ResumeDto> getCandidateResumeByCandidateId(int candidateId) {
+		
 		ResumeDto resumeDto=new ResumeDto();
-		//resumeDto.setCandidate(this.candidateDao.findById(candidateId).get());
+		resumeDto.setCandidate(this.candidateDao.findById(candidateId).get());
 		resumeDto.setCandidateImages(this.imageService.getAllByCandidateId(candidateId).getData());
 		resumeDto.setCandidateLanguages(this.candidateLanguageService.getAllByCandidateId(candidateId).getData());
 		resumeDto.setJobExperiences(this.jobExperienceService.getAllByCandidateId(candidateId).getData());
 		resumeDto.setSchools(this.schoolService.getAllByCandidateId(candidateId).getData());
 		resumeDto.setTechnologies(this.technologyService.getAllByCandidateId(candidateId).getData());
 		resumeDto.setSocialMedias(this.socialMediaService.getAllByCandidateId(candidateId).getData());
+		resumeDto.setCoverLetters(this.coverLetterService.getAllByCandidateId(candidateId).getData());
 		return new SuccessDataResult<ResumeDto>(resumeDto,"Resume listed.");
 	}
 

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "candidate_languages")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","candidate"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class CandidateLanguage {
 
 	@Id
@@ -42,6 +42,7 @@ public class CandidateLanguage {
 	private Language language;
 	
 	@ManyToOne()
+	@JsonIgnore()
 	@JoinColumn(name = "candidate_id")
 	private Candidate candidate;
 }

@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "social_medias")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","candidate"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class SocialMedia {
 
 	@Id
@@ -41,6 +41,7 @@ public class SocialMedia {
 //	private LinkType linkType;
 	
 	@ManyToOne()
+	@JsonIgnore()
 	@JoinColumn(name = "candidate_id")
 	private Candidate candidate;
 }

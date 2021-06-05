@@ -5,11 +5,11 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.CandidateImage;
 import kodlamaio.hrms.entities.concretes.CandidateLanguage;
+import kodlamaio.hrms.entities.concretes.CoverLetter;
 import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.concretes.School;
 import kodlamaio.hrms.entities.concretes.SocialMedia;
@@ -22,7 +22,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","candidate"})
 public class ResumeDto {
 
 	@JsonIgnore()
@@ -34,4 +33,5 @@ public class ResumeDto {
 	private List<@Valid SocialMedia> socialMedias;
 	private List<@Valid Technology> technologies;
 	private List<@Valid CandidateImage> candidateImages;
+	private List<CoverLetter> coverLetters;
 }
