@@ -46,7 +46,7 @@ public class School {
 	
 	
 	@Column(name = "graduation_date")
-	private LocalDate graduationDate;
+	private String graduationDate;
 	
 	//@NotBlank(message = "Start year cannot be empty!")
 	@Column(name = "started_date")
