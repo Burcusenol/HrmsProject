@@ -71,7 +71,6 @@ public class SchoolManager implements SchoolService {
 			school.getGraduationDate();
 		}
 	    return new SuccessResult(); 
-		
 	}
 	
 }
