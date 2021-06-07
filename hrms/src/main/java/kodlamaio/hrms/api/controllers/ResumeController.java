@@ -24,7 +24,7 @@ public class ResumeController {
 		this.resumeService = resumeService;
 	}
 	
-	@PostMapping("/add")
+	//@PostMapping("/add")
 	public ResponseEntity<?> add(@RequestBody @Valid ResumeDto resumeDto,int candidateId){
 		return ResponseEntity.ok(resumeService.insert(resumeDto, candidateId));
 	}

@@ -12,8 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,7 +42,7 @@ public class Technology {
 	private LocalDateTime createdDateTime=LocalDateTime.now();
 	
 	@ManyToOne()
-	@JsonIgnore()
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@JoinColumn(name = "candidate_id",referencedColumnName =  "id")
 	private Candidate candidate;
 	
