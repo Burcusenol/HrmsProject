@@ -40,4 +40,9 @@ public class SchoolController {
 	public ResponseEntity<?>  getByCandidateIdOrderByGraduationDateDesc(@RequestParam int candidateId){
 		return ResponseEntity.ok(this.schoolService.getByCandidateIdOrderByGraduationDateDesc(candidateId));
 	}
+	
+	@GetMapping("/getAllByCandidateId")
+	public ResponseEntity<?> getAllByCandidateId(int candidateId){
+		return ResponseEntity.ok(this.schoolService.getAllByCandidateId(candidateId));	
+	}
 }

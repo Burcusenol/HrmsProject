@@ -32,4 +32,9 @@ public class TechnologyController {
 	public ResponseEntity<?> getAll(){
 		return  ResponseEntity.ok(this.technologyService.getAll());
 	}
+	
+	@GetMapping("/getAllByCandidateId")
+	public ResponseEntity<?> getAllByCandidateId(int candidateId){
+		return ResponseEntity.ok(this.technologyService.getAllByCandidateId(candidateId));	
+	}
 }

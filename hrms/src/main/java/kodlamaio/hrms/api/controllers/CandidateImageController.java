@@ -40,4 +40,9 @@ public class CandidateImageController {
 		return ResponseEntity.ok(this.imageService.getAll());
 				
 	}
+	
+	@GetMapping("/getAllByCandidateId")
+	public ResponseEntity<?> getAllByCandidateId(int candidateId){
+		return ResponseEntity.ok(this.imageService.getAllByCandidateId(candidateId));	
+	}
 }

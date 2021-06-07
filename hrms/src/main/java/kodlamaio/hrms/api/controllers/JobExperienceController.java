@@ -43,4 +43,9 @@ public class JobExperienceController {
 		return ResponseEntity.ok(this.jobExperienceService.getByCandidateOrderByEndedDateAsc(candidateId));
 	}
 	
+	@GetMapping("/getAllByCandidateId")
+	public ResponseEntity<?> getAllByCandidateId(int candidateId){
+		return ResponseEntity.ok(this.jobExperienceService.getAllByCandidateId(candidateId));	
+	}
+	
 }

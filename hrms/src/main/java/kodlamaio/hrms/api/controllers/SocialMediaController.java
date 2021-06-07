@@ -32,4 +32,9 @@ public class SocialMediaController {
 	public ResponseEntity<?> getAll(){
 		return ResponseEntity.ok(this.linkService.getAll());
 	}
+	
+	@GetMapping("/getAllByCandidateId")
+	public ResponseEntity<?> getAllByCandidateId(int candidateId){
+		return ResponseEntity.ok(this.linkService.getAllByCandidateId(candidateId));	
+	}
 }
