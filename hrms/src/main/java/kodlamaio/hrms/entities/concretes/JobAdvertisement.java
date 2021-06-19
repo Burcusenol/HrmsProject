@@ -65,6 +65,9 @@ public class JobAdvertisement {
 	@Column(name = "max_salary")
 	private double maxSalary;
 	
+	@Column(name = "confirm_status")
+	private boolean confirmStatus;
+	
 	@ManyToOne()
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
@@ -77,4 +80,12 @@ public class JobAdvertisement {
 	@ManyToOne()
 	@JoinColumn(name = "city_id")
 	private City city;
+	
+	@ManyToOne()
+	@JoinColumn(name="work_type_id")
+	private WorkType workType;
+	
+	@ManyToOne()
+	@JoinColumn(name ="work_time_id" )
+	private WorkTimeType workTimeType;
 }

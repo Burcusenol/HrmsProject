@@ -42,6 +42,17 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 
 	@Override
+	public JobAdvertisement getByIdAndEmployer_Id(int id, int employerId) {
+		JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.getByIdAndEmployer_Id(id,employerId);
+	    return this.jobAdvertisementDao.save(jobAdvertisement);
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByConfirmStatus(boolean status) {
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByConfirmStatus(status));
+	}
+	
+	@Override
 	public DataResult<List<JobAdvertisement>> getAllByIsActiveTrue() {
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByisActiveTrue());
 	}
@@ -51,6 +62,12 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByisActiveTrueOrderByApplicationDeadlineDesc());
 	}
 
+	@Override
+	public DataResult<List<JobAdvertisement>> getByEmployer_Id(int employerid) {
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByEmployer_Id(employerid));
+	}
+
+	
 	@Override
 	public DataResult<List<JobAdvertisement>> getByisActiveTrueAndEmployer_Id(int employerId) {
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByisActiveTrueAndEmployer_Id(employerId));
@@ -68,6 +85,11 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisementDetailsDto>>(this.jobAdvertisementDao.getAdvertisementWithEmployerDetails());
 	}
 	
+	@Override
+	public Result updateisActive(int jobAdvertisementId) {
+		this.jobAdvertisementDao.updateisActive(jobAdvertisementId);
+		return new SuccessResult("Job Advertisement closed");
+	}
 	@Override
 	public Result insert(JobAdvertisement jobAdvertisement) {
 
@@ -89,14 +111,20 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 
 	@Override
-	public Result setPassive(int jobAdvertisementId) {
-		JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.getById(jobAdvertisementId);
+	public Result setPassive(int id) {
+		JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.getById(id);
 		jobAdvertisement.setActive(false);
 		jobAdvertisementDao.save(jobAdvertisement);
 		return new SuccessResult("Job advertisement passive");
 	}
 	
-	
+	@Override
+	public Result setActive(int id) {
+		JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.getById(id);
+		jobAdvertisement.setActive(true);
+		jobAdvertisementDao.save(jobAdvertisement);
+		return new SuccessResult("Job advertisement active");
+	}
 	
 	private Result minMaxControl(JobAdvertisement jobAdvertisement) {
 		if(jobAdvertisement.getMinSalary()>jobAdvertisement.getMaxSalary()) {
@@ -118,6 +146,13 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		}
 		return new SuccessResult();
 	}
+
+	
+
+	
+
+	
+	
 
 	
 	

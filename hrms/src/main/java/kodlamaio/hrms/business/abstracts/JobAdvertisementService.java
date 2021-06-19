@@ -26,9 +26,17 @@ public interface JobAdvertisementService {
 	
 	JobAdvertisement getById(int id);
 	
-	Result setPassive(int jobAdvertisementId);
+	JobAdvertisement getByIdAndEmployer_Id(int id,int employerId);
+	
+	Result setPassive(int id);
+	
+	Result setActive(int id);
+	Result updateisActive(int jobAdvertisementId);
 	
 	Result insert(JobAdvertisement jobAdvertisement);
 	
+	DataResult<List<JobAdvertisement>> getByConfirmStatus(boolean status);
+	
+	DataResult<List<JobAdvertisement>> getByEmployer_Id(int employerid);
 	
 }

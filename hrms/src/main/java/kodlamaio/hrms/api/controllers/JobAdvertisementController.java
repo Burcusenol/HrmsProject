@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,5 +70,23 @@ public class JobAdvertisementController {
 		return ResponseEntity.ok(this.setPassive(jobAdvertisementId));
 	}
 	
+	@GetMapping("/setActive")
+	 public ResponseEntity<?> setActive (@RequestParam int jobAdvertisementId) {
+		return ResponseEntity.ok(this.setActive(jobAdvertisementId));
+	}
+	
+	@GetMapping("/getByConfirmStatus")
+	public ResponseEntity<?> getByConfirmStatus(boolean status){
+		return ResponseEntity.ok(this.jobAdvertisementService.getByConfirmStatus(status));
+	}
 
+	@GetMapping("/getByEmployer_Id")
+	public ResponseEntity<?> getByEmployer_Id(@RequestParam int employerid){
+		return ResponseEntity.ok(this.jobAdvertisementService.getByEmployer_Id(employerid));
+	}
+	
+	@PutMapping("/updateisActive")
+	public ResponseEntity<?> updateisActive(int jobAdvertisementId){
+		return ResponseEntity.ok(this.jobAdvertisementService.updateisActive(jobAdvertisementId));
+	}
 }
