@@ -86,8 +86,21 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 	
 	@Override
-	public Result updateisActive(int jobAdvertisementId) {
-		this.jobAdvertisementDao.updateisActive(jobAdvertisementId);
+	public Result updateisActive(int jobAdvertisementId, int employerId) {
+		this.jobAdvertisementDao.updateisActive(jobAdvertisementId,employerId);
+		return new SuccessResult("Job Advertisement closed");
+	}
+	
+	@Override
+	public Result setPassive(int jobAdvertisementId) {
+		JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.getById(jobAdvertisementId);
+		Result	result=BusinessRules.run(checkJobPostIsExists(jobAdvertisement));
+		if(!result.isSuccess()) {
+			return result;
+		}
+		JobAdvertisement updateJobAdvertisement=jobAdvertisement;
+		updateJobAdvertisement.setActive(!updateJobAdvertisement.isActive());;
+		this.jobAdvertisementDao.save(updateJobAdvertisement);	
 		return new SuccessResult("Job Advertisement closed");
 	}
 	@Override
@@ -108,22 +121,6 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		Sort sort=Sort.by(Sort.Direction.DESC,"createdDate");
 		return new SuccessDataResult<List<JobAdvertisement>>
 		(this.jobAdvertisementDao.findAll(sort),"Success");
-	}
-
-	@Override
-	public Result setPassive(int id) {
-		JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.getById(id);
-		jobAdvertisement.setActive(false);
-		jobAdvertisementDao.save(jobAdvertisement);
-		return new SuccessResult("Job advertisement passive");
-	}
-	
-	@Override
-	public Result setActive(int id) {
-		JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.getById(id);
-		jobAdvertisement.setActive(true);
-		jobAdvertisementDao.save(jobAdvertisement);
-		return new SuccessResult("Job advertisement active");
 	}
 	
 	private Result minMaxControl(JobAdvertisement jobAdvertisement) {
@@ -148,7 +145,14 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 
 	
+	 private Result checkJobPostIsExists(JobAdvertisement jobAdvertisement) {
+	        if (jobAdvertisement == null) {
+	            return new ErrorResult("İş ilanı mevcut değil");
+	        }
+	        return new SuccessResult();
+	    }
 
+	
 	
 
 	

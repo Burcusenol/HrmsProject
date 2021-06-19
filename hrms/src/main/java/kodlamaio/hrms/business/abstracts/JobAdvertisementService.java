@@ -2,6 +2,7 @@ package kodlamaio.hrms.business.abstracts;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -28,10 +29,9 @@ public interface JobAdvertisementService {
 	
 	JobAdvertisement getByIdAndEmployer_Id(int id,int employerId);
 	
-	Result setPassive(int id);
+	Result setPassive(int jobAdvertisementId);
 	
-	Result setActive(int id);
-	Result updateisActive(int jobAdvertisementId);
+	Result updateisActive(int jobAdvertisementId, int employerId);
 	
 	Result insert(JobAdvertisement jobAdvertisement);
 	

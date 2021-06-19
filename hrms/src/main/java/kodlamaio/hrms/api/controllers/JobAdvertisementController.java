@@ -1,6 +1,7 @@
 package kodlamaio.hrms.api.controllers;
 
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 @CrossOrigin
@@ -67,12 +69,17 @@ public class JobAdvertisementController {
 	
 	@GetMapping("/setPassive")
 	 public ResponseEntity<?> setPassive(@RequestParam int jobAdvertisementId) {
-		return ResponseEntity.ok(this.setPassive(jobAdvertisementId));
+		Result result=this.jobAdvertisementService.setPassive(jobAdvertisementId);
+		if(!result.isSuccess()) {
+			return ResponseEntity.badRequest().body(result);
+		}
+		return ResponseEntity.ok(result);
 	}
 	
-	@GetMapping("/setActive")
-	 public ResponseEntity<?> setActive (@RequestParam int jobAdvertisementId) {
-		return ResponseEntity.ok(this.setActive(jobAdvertisementId));
+	@GetMapping("/updateisActive")
+	@Transactional
+	public Result updateisActive(@RequestParam int jobAdvertisementId, @RequestParam int employerId) {
+		return this.jobAdvertisementService.updateisActive(jobAdvertisementId, employerId);
 	}
 	
 	@GetMapping("/getByConfirmStatus")
@@ -85,8 +92,4 @@ public class JobAdvertisementController {
 		return ResponseEntity.ok(this.jobAdvertisementService.getByEmployer_Id(employerid));
 	}
 	
-	@PutMapping("/updateisActive")
-	public ResponseEntity<?> updateisActive(int jobAdvertisementId){
-		return ResponseEntity.ok(this.jobAdvertisementService.updateisActive(jobAdvertisementId));
-	}
 }

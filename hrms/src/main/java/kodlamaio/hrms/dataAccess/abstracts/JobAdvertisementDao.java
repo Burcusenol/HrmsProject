@@ -33,6 +33,6 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	
 	
 	@Modifying
-	@Query("update JobAdvertisement set isActive=false where id=:id ")
-	int updateisActive(@Param("id")int jobAdvertisementId);
+	@Query("update JobAdvertisement set isActive=false where id=:id and employer.id=:employerId")
+	int updateisActive(@Param("id")int jobAdvertisementId,@Param("employerId") int employerId);
 }
