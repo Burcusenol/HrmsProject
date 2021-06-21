@@ -91,6 +91,14 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessResult("Job Advertisement closed");
 	}
 	
+
+	@Override
+	public Result updateconfirmStatus(int jobAdvertisementId) {
+		this.jobAdvertisementDao.updateconfirmStatus(jobAdvertisementId);
+		return new SuccessResult("Job advertisement confirmed.");
+	}
+
+	
 	@Override
 	public Result setPassive(int jobAdvertisementId) {
 		JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.getById(jobAdvertisementId);
@@ -103,6 +111,10 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		this.jobAdvertisementDao.save(updateJobAdvertisement);	
 		return new SuccessResult("Job Advertisement closed");
 	}
+	
+	
+
+	
 	@Override
 	public Result insert(JobAdvertisement jobAdvertisement) {
 
@@ -152,6 +164,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	        return new SuccessResult();
 	    }
 
+	
 	
 	
 

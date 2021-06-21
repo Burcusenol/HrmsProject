@@ -1,6 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
 
 
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -49,14 +51,14 @@ public class JobAdvertisement {
 	
 
 	@Column(name = "application_deadline")
-	private LocalDateTime applicationDeadline;
+	private LocalDate applicationDeadline;
 	
 
 	@Column(name = "created_date")
 	private LocalDateTime createdDate=LocalDateTime.now();
 	
-	@Column(name = "is_active")
-	private boolean isActive;
+	@Column(name = "is_active",columnDefinition="boolean default true")
+	private boolean isActive=true;
 	
 	
 	@Column(name = "min_salary")
@@ -65,8 +67,8 @@ public class JobAdvertisement {
 	@Column(name = "max_salary")
 	private double maxSalary;
 	
-	@Column(name = "confirm_status")
-	private boolean confirmStatus;
+	@Column(name = "confirm_status",columnDefinition="boolean default false")
+	private boolean confirmStatus=false;
 	
 	@ManyToOne()
 	@JoinColumn(name = "employer_id")

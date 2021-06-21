@@ -27,9 +27,15 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	
 	List<JobAdvertisement> getByConfirmStatus(boolean status);
 	
-	@Query("select new kodlamaio.hrms.entities.dtos.JobAdvertisementDetailsDto(e.companyName,t.title,j.quata, c.cityName,j.applicationDeadline,j.createdDate,j.description) " +
+	
+	@Query("select new kodlamaio.hrms.entities.dtos.JobAdvertisementDetailsDto(e.companyName,t.title,j.quata, c.cityName,j.createdDate,j.applicationDeadline,j.description) " +
 			"from JobAdvertisement j inner join j.employer e inner join j.jobTitle t inner join j.city c")
 	List<JobAdvertisementDetailsDto> getAdvertisementWithEmployerDetails();
+	
+	@Modifying
+	@Query("update JobAdvertisement set confirmStatus=true where id=:id")
+	int updateconfirmStatus(@Param("id")int id);
+	
 	
 	
 	@Modifying

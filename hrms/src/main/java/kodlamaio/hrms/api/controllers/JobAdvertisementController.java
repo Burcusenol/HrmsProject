@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,6 +79,12 @@ public class JobAdvertisementController {
 	@Transactional
 	public Result updateisActive(@RequestParam int jobAdvertisementId, @RequestParam int employerId) {
 		return this.jobAdvertisementService.updateisActive(jobAdvertisementId, employerId);
+	}
+	
+	@GetMapping("/updateconfirmStatus")
+	@Transactional
+	public Result updateconfirmStatus(@RequestParam int jobAdvertisementId) {
+		return this.jobAdvertisementService.updateconfirmStatus(jobAdvertisementId);
 	}
 	
 	@GetMapping("/getByConfirmStatus")
