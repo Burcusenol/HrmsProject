@@ -15,6 +15,8 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 
 	List<JobAdvertisement> getByisActiveTrue();
 	
+	List<JobAdvertisement> getByisActiveTrueAndConfirmStatusTrue();
+	
 	List<JobAdvertisement> getByisActiveTrueOrderByApplicationDeadlineDesc();
 	
 	List<JobAdvertisement> getByisActiveTrueAndEmployer_Id(int employerId);
@@ -25,7 +27,7 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	
 	List<JobAdvertisement> getByEmployer_Id(int employerid);
 	
-	List<JobAdvertisement> getByConfirmStatus(boolean status);
+	List<JobAdvertisement> getByConfirmStatusFalse();
 	
 	
 	@Query("select new kodlamaio.hrms.entities.dtos.JobAdvertisementDetailsDto(e.companyName,t.title,j.quata, c.cityName,j.createdDate,j.applicationDeadline,j.description) " +

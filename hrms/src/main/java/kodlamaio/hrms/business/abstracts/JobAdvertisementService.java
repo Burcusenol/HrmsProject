@@ -17,6 +17,8 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getAllSorted();
 	
 	DataResult<List<JobAdvertisement>> getAllByIsActiveTrue();
+	
+	DataResult<List<JobAdvertisement>> getByisActiveTrueAndConfirmStatusTrue();
 
 	DataResult<List<JobAdvertisement>> getByisActiveTrueOrderByApplicationDeadline();
 	
@@ -35,8 +37,9 @@ public interface JobAdvertisementService {
 	Result updateisActive(int jobAdvertisementId, int employerId);
 	
 	Result insert(JobAdvertisement jobAdvertisement);
+	Result delete(int jobAdvertisementId);
 	
-	DataResult<List<JobAdvertisement>> getByConfirmStatus(boolean status);
+	DataResult<List<JobAdvertisement>>getByConfirmStatusFalse();
 	
 	DataResult<List<JobAdvertisement>> getByEmployer_Id(int employerid);
 	

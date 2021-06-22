@@ -48,8 +48,8 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> getByConfirmStatus(boolean status) {
-		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByConfirmStatus(status));
+	public DataResult<List<JobAdvertisement>> getByConfirmStatusFalse() {
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByConfirmStatusFalse());
 	}
 	
 	@Override
@@ -65,6 +65,11 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	@Override
 	public DataResult<List<JobAdvertisement>> getByEmployer_Id(int employerid) {
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByEmployer_Id(employerid));
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByisActiveTrueAndConfirmStatusTrue() {
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByisActiveTrueAndConfirmStatusTrue(),"Data listed");
 	}
 
 	
@@ -91,6 +96,12 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessResult("Job Advertisement closed");
 	}
 	
+	@Override
+	public Result delete(int jobAdvertisementId) {
+		this.jobAdvertisementDao.deleteById(jobAdvertisementId);
+		return new SuccessResult("Job advertisement deleted");
+	}
+
 
 	@Override
 	public Result updateconfirmStatus(int jobAdvertisementId) {
@@ -163,6 +174,8 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	        }
 	        return new SuccessResult();
 	    }
+
+
 
 	
 	

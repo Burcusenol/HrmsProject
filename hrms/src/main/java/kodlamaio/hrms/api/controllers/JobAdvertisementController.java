@@ -41,6 +41,11 @@ public class JobAdvertisementController {
 		return ResponseEntity.ok(jobAdvertisementService.insert(jobAdvertisement));
 	}
 	
+	@PostMapping("/delete")
+	public ResponseEntity<?> Delete(int jobAdvertisementId) {
+		return ResponseEntity.ok(jobAdvertisementService.delete(jobAdvertisementId));
+	}
+	
 	@GetMapping("/getAllSorted")
 	public ResponseEntity<?> getAllSorted() {
 		return ResponseEntity.ok(this.jobAdvertisementService.getAllSorted());
@@ -66,6 +71,11 @@ public class JobAdvertisementController {
 		return ResponseEntity.ok(this.jobAdvertisementService.getByisActiveTrueAndEmployer_Id(employerId));
 	}
 	
+	@GetMapping("/getByisActiveTrueAndConfirmStatusTrue")
+	public ResponseEntity<?> getByisActiveTrueAndConfirmStatusTrue(){
+		return ResponseEntity.ok(this.jobAdvertisementService.getByisActiveTrueAndConfirmStatusTrue());
+	}
+	
 	@GetMapping("/setPassive")
 	 public ResponseEntity<?> setPassive(@RequestParam int jobAdvertisementId) {
 		Result result=this.jobAdvertisementService.setPassive(jobAdvertisementId);
@@ -81,15 +91,15 @@ public class JobAdvertisementController {
 		return this.jobAdvertisementService.updateisActive(jobAdvertisementId, employerId);
 	}
 	
-	@GetMapping("/updateconfirmStatus")
+	@PostMapping("/updateconfirmStatus")
 	@Transactional
 	public Result updateconfirmStatus(@RequestParam int jobAdvertisementId) {
 		return this.jobAdvertisementService.updateconfirmStatus(jobAdvertisementId);
 	}
 	
-	@GetMapping("/getByConfirmStatus")
-	public ResponseEntity<?> getByConfirmStatus(boolean status){
-		return ResponseEntity.ok(this.jobAdvertisementService.getByConfirmStatus(status));
+	@GetMapping("/getByConfirmStatusFalse")
+	public ResponseEntity<?> getByConfirmStatusFalse(){
+		return ResponseEntity.ok(this.jobAdvertisementService.getByConfirmStatusFalse());
 	}
 
 	@GetMapping("/getByEmployer_Id")
