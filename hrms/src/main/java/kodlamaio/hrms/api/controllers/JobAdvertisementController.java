@@ -31,6 +31,11 @@ public class JobAdvertisementController {
 		this.jobAdvertisementService = jobAdvertisementService;
 	}
 
+	@GetMapping("/getById")
+	public ResponseEntity<?> getById(@RequestParam int id){
+		return ResponseEntity.ok(jobAdvertisementService.getById(id));
+	}
+	
 	@GetMapping("/getall")
 	public ResponseEntity<?> getAll(){
 		return ResponseEntity.ok(this.jobAdvertisementService.getAll());
