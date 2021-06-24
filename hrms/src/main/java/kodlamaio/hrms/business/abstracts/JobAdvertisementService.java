@@ -26,7 +26,7 @@ public interface JobAdvertisementService {
 	
 	DataResult<List<JobAdvertisementDetailsDto>>getAdvertisementWithEmployerDetails();
 	
-	JobAdvertisement getById(int id);
+	DataResult<JobAdvertisement> getById(int id);
 	
 	JobAdvertisement getByIdAndEmployer_Id(int id,int employerId);
 	

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,7 +54,7 @@ public class JobExperience {
 	@Column(name = "created_date")
 	private LocalDateTime createdDate=LocalDateTime.now();
 	
-	@ManyToOne()
+	@ManyToOne(targetEntity = Candidate.class, fetch = FetchType.EAGER)
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@JoinColumn(name = "candidate_id")
 	private Candidate candidate;

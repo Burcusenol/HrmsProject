@@ -79,9 +79,8 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 
 	@Override
-	public JobAdvertisement getById(int id) {
-		JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.getById(id);
-	    return this.jobAdvertisementDao.save(jobAdvertisement);
+	public DataResult<JobAdvertisement> getById(int id) {
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getById(id),"Data listed");
 		
 	}
 
