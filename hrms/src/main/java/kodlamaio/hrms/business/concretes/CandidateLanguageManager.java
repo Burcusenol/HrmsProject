@@ -48,4 +48,10 @@ public class CandidateLanguageManager implements CandidateLanguageService {
 		return new SuccessResult();
 	}
 
+	@Override
+	public Result update(CandidateLanguage candidateLanguage) {
+		this.candidatelanguageDao.save(candidateLanguage);
+		return new SuccessResult("Language updated");
+	}
+
 }
