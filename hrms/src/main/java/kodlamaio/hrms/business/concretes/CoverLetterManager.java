@@ -41,4 +41,10 @@ public class CoverLetterManager implements CoverLetterService {
 		return new SuccessDataResult<List<CoverLetter>>(coverLetterDao.findAll(),"Cover letters listed");
 	}
 
+	@Override
+	public Result update(CoverLetter coverLetter) {
+	this.coverLetterDao.save(coverLetter);
+	return new SuccessResult("Cover letter updated.");
+	}
+
 }

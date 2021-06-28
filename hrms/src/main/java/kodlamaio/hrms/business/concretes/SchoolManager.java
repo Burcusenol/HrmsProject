@@ -57,6 +57,13 @@ public class SchoolManager implements SchoolService {
 	}
 
 	@Override
+	public Result update(School school) {
+		this.schoolDao.save(school);
+		return new SuccessResult("School updated");
+	}
+	
+	
+	@Override
 	public DataResult<List<School>> getAllByCandidateId(int candidateId) {
 		return new SuccessDataResult<List<School>>(schoolDao.getAllByCandidateId(candidateId));
 	}
@@ -72,5 +79,6 @@ public class SchoolManager implements SchoolService {
 		}
 	    return new SuccessResult(); 
 	}
-	
+
+
 }

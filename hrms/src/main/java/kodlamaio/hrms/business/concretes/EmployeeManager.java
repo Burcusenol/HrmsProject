@@ -44,12 +44,7 @@ public class EmployeeManager implements EmployeeService {
 
 	@Override
 	public Result update(Employee employee) {
-		Employee updateemployee=this.employeeDao.getById(employee.getId());
-		updateemployee.setFirstName(employee.getFirstName());
-		updateemployee.setLastName(employee.getLastName());
-		updateemployee.setEmail(employee.getEmail());
-		updateemployee.setPassword(employee.getPassword());
-		this.employeeDao.save(updateemployee);
+		this.employeeDao.save(employee);
 		return new SuccessResult("Employee updated");
 		
 	}

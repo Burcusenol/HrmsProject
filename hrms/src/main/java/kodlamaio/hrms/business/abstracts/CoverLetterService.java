@@ -9,6 +9,8 @@ import kodlamaio.hrms.entities.concretes.CoverLetter;
 public interface CoverLetterService {
 
 	Result insert(CoverLetter coverLetter);
+	
+	Result update(CoverLetter coverLetter);
 
 	DataResult<List<CoverLetter>> getAll();
 	

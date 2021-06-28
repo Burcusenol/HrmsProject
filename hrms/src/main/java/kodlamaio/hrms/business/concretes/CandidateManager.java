@@ -137,6 +137,15 @@ public class CandidateManager implements CandidateService {
 		return new ErrorResult();
 	}
 
+
+
+	@Override
+	public Result update(Candidate candidate) {
+		this.candidateDao.save(candidate);
+		return new SuccessResult("Candidate updated");
+				
+	}
+
 	
 	
 	

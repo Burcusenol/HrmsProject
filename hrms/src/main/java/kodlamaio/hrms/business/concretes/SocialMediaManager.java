@@ -48,4 +48,10 @@ public class SocialMediaManager implements SocialMediaService{
 		return new SuccessDataResult<List<SocialMedia>>(linkDao.getAllByCandidateId(candidateId));
 	}
 
+	@Override
+	public Result update(SocialMedia link) {
+		this.linkDao.save(link);
+		return new SuccessResult("Social media link updated");
+	}
+
 }

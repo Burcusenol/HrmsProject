@@ -9,6 +9,7 @@ import kodlamaio.hrms.entities.concretes.Technology;
 public interface TechnologyService {
 
 	Result insert(Technology technology);
+	Result update(Technology technology);
 	DataResult<List<Technology>> getAll();
 	Result addAll(List<Technology> technology);
     DataResult<List<Technology>> getAllByCandidateId(int candidateId);

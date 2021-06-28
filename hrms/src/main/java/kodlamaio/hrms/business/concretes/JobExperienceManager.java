@@ -63,6 +63,14 @@ public class JobExperienceManager implements JobExperienceService {
 
 
 
+	@Override
+	public Result update(JobExperience jobExperience) {
+		this.jobExperienceDao.save(jobExperience);
+		return new SuccessResult("Job experince updated");
+	}
+
+
+
 
 
 

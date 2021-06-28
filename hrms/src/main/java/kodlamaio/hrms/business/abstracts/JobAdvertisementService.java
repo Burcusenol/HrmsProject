@@ -19,6 +19,8 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getAllByIsActiveTrue();
 	
 	DataResult<List<JobAdvertisement>> getByisActiveTrueAndConfirmStatusTrue();
+	
+	DataResult<List<JobAdvertisement>> getByisActiveTrueAndConfirmStatusTrue(int pageNo,int pageSize);
 
 	DataResult<List<JobAdvertisement>> getByisActiveTrueOrderByApplicationDeadline();
 	

@@ -1,6 +1,7 @@
 package kodlamaio.hrms.api.controllers;
 
 
+
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -112,4 +113,8 @@ public class JobAdvertisementController {
 		return ResponseEntity.ok(this.jobAdvertisementService.getByEmployer_Id(employerid));
 	}
 	
+	@GetMapping("/getByPage")
+	public ResponseEntity<?> getByisActiveTrueAndConfirmStatusTrue( @RequestParam int pageNo,@RequestParam int pageSize){
+		return   ResponseEntity.ok(this.jobAdvertisementService.getByisActiveTrueAndConfirmStatusTrue(pageNo, pageSize));
+	}
 }

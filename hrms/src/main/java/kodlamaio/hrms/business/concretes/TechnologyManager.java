@@ -48,4 +48,10 @@ public class TechnologyManager implements TechnologyService {
 		return new SuccessDataResult<List<Technology>>(technologyDao.getAllByCandidateId(candidateId),"Technology listed");
 	}
 
+	@Override
+	public Result update(Technology technology) {
+	this.technologyDao.save(technology);
+	return new SuccessResult("Technology updated");
+	}
+
 }

@@ -3,6 +3,8 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +39,13 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAll() {
-		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.findAll(),"Job advertisements listed.");
-		
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.findAll(),"Job advertisements listed.");	
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByisActiveTrueAndConfirmStatusTrue(int pageNo, int pageSize) {
+		Pageable pageable=PageRequest.of(pageNo-1,pageSize);
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(pageable).getContent());
 	}
 
 	@Override
@@ -56,6 +63,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	public DataResult<List<JobAdvertisement>> getAllByIsActiveTrue() {
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByisActiveTrue());
 	}
+
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getByisActiveTrueOrderByApplicationDeadline() {
@@ -173,6 +181,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	        }
 	        return new SuccessResult();
 	    }
+
 
 
 

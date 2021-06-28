@@ -11,6 +11,7 @@ public interface CandidateService {
 
 	DataResult<List<Candidate>> getAll();
 	Result insert(Candidate candidate);
+	Result update(Candidate candidate);
 	DataResult<Candidate> getById(int id);
 	DataResult<ResumeDto> getCandidateResumeByCandidateId(int candidateId);
 	

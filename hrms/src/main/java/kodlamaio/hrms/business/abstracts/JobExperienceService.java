@@ -9,6 +9,7 @@ import kodlamaio.hrms.entities.concretes.JobExperience;
 public interface JobExperienceService {
 
 	Result insert(JobExperience jobExperience);
+	Result update(JobExperience jobExperience);
 	Result addAll(List<JobExperience> jobExperience);
 	DataResult<List<JobExperience>> getAll();
 	DataResult<List<JobExperience>> getByCandidateOrderByEndedDateAsc(int candidateId);
