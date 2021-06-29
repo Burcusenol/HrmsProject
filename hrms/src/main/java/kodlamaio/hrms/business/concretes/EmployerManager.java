@@ -16,6 +16,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.core.utilities.validates.EmployerValidateByEmployee;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 import kodlamaio.hrms.dataAccess.abstracts.UserDao;
+import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.Employer;
 
 @Service
@@ -37,6 +38,11 @@ public class EmployerManager implements EmployerService {
 		return new SuccessDataResult<List<Employer>>(employerDao.findAll(),"Employers listed");
 	}
 
+	@Override
+	public DataResult<Employer> getById(int id) {
+		return new SuccessDataResult<Employer>(this.employerDao.findById(id).get());
+	}
+	
 	@Override
 	public Result insert(Employer employer) {
 
@@ -78,5 +84,7 @@ public class EmployerManager implements EmployerService {
 	        }
 	        return new ErrorResult("Web address is not match");
 	    }
+
+	
 	
 }

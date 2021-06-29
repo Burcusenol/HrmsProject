@@ -7,6 +7,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDetailsDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementFilter;
 
 
 
@@ -23,6 +24,8 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getByisActiveTrueAndConfirmStatusTrue(int pageNo,int pageSize);
 
 	DataResult<List<JobAdvertisement>> getByisActiveTrueOrderByApplicationDeadline();
+	
+	 DataResult<List<JobAdvertisement>> getByisActiveTrueAndConfirmStatusTrueAndFilter(int pageNo, int pageSize, JobAdvertisementFilter jobAdvertisementFilter);
 	
 	DataResult<List<JobAdvertisement>> getByisActiveTrueAndEmployer_Id(int employerId);
 	

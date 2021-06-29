@@ -8,4 +8,6 @@ public interface EmployerDao extends JpaRepository<Employer, Integer>{
 
 	boolean existsById(int id);
 	
+	Employer getById(int id);
+	
 }

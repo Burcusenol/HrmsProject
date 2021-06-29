@@ -20,6 +20,7 @@ import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDetailsDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementFilter;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService{
@@ -80,6 +81,14 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByisActiveTrueAndConfirmStatusTrue(),"Data listed");
 	}
 
+	@Override
+	public DataResult<List<JobAdvertisement>> getByisActiveTrueAndConfirmStatusTrueAndFilter(int pageNo, int pageSize,
+			JobAdvertisementFilter jobAdvertisementFilter) {
+		 Pageable pageable = PageRequest.of(pageNo -1, pageSize);
+	        return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByFilter(jobAdvertisementFilter, pageable).getContent(), this.jobAdvertisementDao.getByFilter(jobAdvertisementFilter,pageable).getTotalElements()+"");
+	}
+
+	
 	
 	@Override
 	public DataResult<List<JobAdvertisement>> getByisActiveTrueAndEmployer_Id(int employerId) {
@@ -182,6 +191,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	        return new SuccessResult();
 	    }
 
+	
 
 
 

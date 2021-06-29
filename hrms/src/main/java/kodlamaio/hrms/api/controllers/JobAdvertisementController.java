@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementFilter;
 
 @CrossOrigin
 @RestController
@@ -117,4 +118,10 @@ public class JobAdvertisementController {
 	public ResponseEntity<?> getByisActiveTrueAndConfirmStatusTrue( @RequestParam int pageNo,@RequestParam int pageSize){
 		return   ResponseEntity.ok(this.jobAdvertisementService.getByisActiveTrueAndConfirmStatusTrue(pageNo, pageSize));
 	}
+	
+	  @PostMapping("/getByisActiveTrueAndConfirmStatusTrueAndFilter")
+	    public Result getByisActiveTrueAndConfirmStatusTrueAndFilter(@RequestParam int pageNo,@RequestParam int pageSize,@RequestBody JobAdvertisementFilter jobAdvertisementFilter){
+	        return jobAdvertisementService.getByisActiveTrueAndConfirmStatusTrueAndFilter(pageNo,pageSize,jobAdvertisementFilter);
+	    }
+	
 }
