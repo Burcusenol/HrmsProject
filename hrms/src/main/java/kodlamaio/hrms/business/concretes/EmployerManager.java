@@ -1,9 +1,13 @@
 package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang3.ThreadUtils.ThreadIdPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kodlamaio.hrms.business.abstracts.EmployerService;
 import kodlamaio.hrms.core.utilities.adapters.abstracts.EmailService;
@@ -18,18 +22,21 @@ import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 import kodlamaio.hrms.dataAccess.abstracts.UserDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 @Service
 public class EmployerManager implements EmployerService {
 
 	private EmployerDao employerDao;
 	private UserDao userDao;
+	private ObjectMapper objectMapper;
 	
 	@Autowired
-	public EmployerManager(EmployerDao employerDao,UserDao userDao,EmailService emailService) {
+	public EmployerManager(EmployerDao employerDao,UserDao userDao,EmailService emailService, ObjectMapper objectMapper) {
 		super();
 		this.employerDao = employerDao;
 		this.userDao=userDao;
+		this.objectMapper=objectMapper;
 	}
 
 	@Override
@@ -42,6 +49,30 @@ public class EmployerManager implements EmployerService {
 	public DataResult<Employer> getById(int id) {
 		return new SuccessDataResult<Employer>(this.employerDao.findById(id).get());
 	}
+	
+	@Override
+	public Result updateWaiting(Employer employer) {
+		Employer updateEmployer=this.getById(employer.getId()).getData();
+		Map<String, Object> update=this.objectMapper.convertValue(employer,Map.class);
+		updateEmployer.setEmployerUpdate(update);
+	    this.employerDao.save(updateEmployer);
+	    return new SuccessResult("Employer update is waiting");
+	}
+	
+	@Override
+	public Result updateConfirmStatus(int employerId) {
+		Employer employerToConfirmUpdate = this.getById(employerId).getData();
+		Employer tempEmployer = this.objectMapper.convertValue(employerToConfirmUpdate.getEmployerUpdate(), Employer.class);
+		tempEmployer.setEmployerUpdate(null);
+		this.employerDao.save(tempEmployer);
+		return new SuccessResult("Employer confirmed");
+	}
+
+	@Override
+	public DataResult<List<Employer>> getByConfirmStatusFalse() {
+		return new SuccessDataResult<List<Employer>>(employerDao.getByConfirmStatusFalse());
+	}
+	
 	
 	@Override
 	public Result insert(Employer employer) {
@@ -85,6 +116,7 @@ public class EmployerManager implements EmployerService {
 	        return new ErrorResult("Web address is not match");
 	    }
 
+	
 	
 	
 }

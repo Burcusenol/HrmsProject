@@ -40,8 +40,23 @@ public class EmployersController {
 		return ResponseEntity.ok(this.employerService.insert(employer));
 	}
 	
+	@GetMapping("/getByConfirmStatusFalse")
+	public ResponseEntity<?> getByConfirmStatusFalse(){
+		return ResponseEntity.ok(this.employerService.getByConfirmStatusFalse());
+	}
+	
 	@GetMapping("/getById")
 	public ResponseEntity<?> getById(@RequestParam int id){
 		return ResponseEntity.ok(employerService.getById(id));
+	}
+	
+	@PostMapping("/updateWaiting")
+	public ResponseEntity<?> updateWaiting(@RequestBody Employer employer){
+		return ResponseEntity.ok(this.employerService.updateWaiting(employer));			
+	}
+	
+	@PostMapping("/updateConfirmStatus")
+	public ResponseEntity<?> updateConfirmStatus(@RequestParam int employerId){
+		return  ResponseEntity.ok(this.employerService.updateConfirmStatus(employerId));
 	}
 }

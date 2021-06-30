@@ -44,7 +44,7 @@ public abstract class User {
 	
 	
 	@Column(name = "created_date")
-	private  LocalDateTime created_Date=LocalDateTime.now();
+	private  LocalDateTime createdDate=LocalDateTime.now();
 	
 	
 	@Column(name = "is_active")

@@ -9,6 +9,14 @@ import kodlamaio.hrms.entities.concretes.Employer;
 public interface EmployerService {
 
 	DataResult<List<Employer>> getAll();
+	
 	Result insert(Employer employer);
+	
 	DataResult<Employer> getById(int id);
+	
+	Result updateWaiting(Employer employer);
+	
+	Result updateConfirmStatus(int employerId);
+	
+	DataResult<List<Employer>>getByConfirmStatusFalse();
 }
